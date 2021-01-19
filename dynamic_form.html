@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<style>
+		input{
+			margin:2%;
+			color:#363062;
+			border-radius: 5px;
+			border:none;
+		}
+		::placeholder{
+			color:#363062;
+			padding-left: 10px;
+		}
+		button{
+			border-radius: 20px;
+			border:none;
+			color: #363062;
+			font-weight: bold;
+			transition: 1s;
+			padding:0 10px;
+		}
+		button:hover{
+			background:  #363062;
+			color:white;
+			border:1px solid white;
+			transition: 1s;
+		}
+		select option{
+			font-weight: bold;
+		}
+		select{
+			padding:3px;
+			color: #363062;
+			font-weight: bold;
+			border-radius: 5px;
+			border:none;
+		}
+		.lbl{
+			font-size: 20px;
+			font-weight: bold;
+			padding-left: 10px;
+		}
+		.selecttype:disabled{
+			background:grey;
+		}
+		.add:disabled{
+			background:grey;
+			transition: none;
+
+		}
+		.add:disabled:hover{
+			background:grey;
+			transition: none;
+			color: #363062;
+			border: none;
+		}
+	</style>
+</head>
+<body style="background: #363062;color:white;font-size: 20px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center h2 mt-3">Add Form Controls</div>
+		</div>
+		<div class="row my-3">
+			<div class="col-md-3">
+				<select id="input" class="selecttype">
+					<option>--Select--</option>
+					<option value="text">Text</option>
+					<option value="no">Number</option>
+					<option value="email">Email</option>
+					<option value="radio">Radio</option>
+					<option value="select">Select</option>
+					<option value="check">Checkbox</option>
+					<option value="submit">Submit</option>
+				</select>
+				<button id="add" onclick="insert()" class="ml-3 add">ADD</button>
+			</div>
+
+			<div class="col-md-9" style="box-shadow:0 4px 18px -12px rgba(0,0,0,14.45);background: #4d4c7d;border-radius: 5px;"><form action='javascript:void(0);'><div id="field"></div></form>
+		</div>
+	</div>
+	<div class="row" id='dispform'>
+		<div class='col-md-7' style="border-radius: 5px;background:#827397">
+			<form  action='javascript:void(0);'><div id="newform"></div></form>
+		</div>
+		<div class="col-md-5 pr-0">
+			<div class="pl-3 py-2" id="information" style="background: #827397;border-radius: 5px"></div>
+		</div>
+	</div>
+</div>
+
+<script>
+	var input=document.getElementById('input');
+	var counter = 0;
+	
+	function insert(){
+		counter++;
+		if(document.getElementsByClassName("rmradio").length >0){
+			var rd1 = document.getElementsByClassName("rmradio");
+			for(var i=0; i<rd1.length; i++){
+				rd1[i].style.display="none";
+			}
+		}
+		if(document.getElementsByClassName("labeltext").length >0){
+			var lb=document.getElementsByClassName("labeltext");
+			for(var j=0;j<lb.length;j++){
+				lb[j].style.display='none';
+			}
+
+		}
+		switch(input.value){
+			case "text":
+			document.getElementById("field").innerHTML+="<div class='row mt-3 mb-3 align-items-center'><div class='col-md-6'><div class='lbl lblcounter"+counter+"'></div><div class='labeltext'><input type='text' placeholder='Label'><button onclick='labeladd(this)'>ADD</button></div></div><div class='col-md-5'><div><input type='text' placeholder='Text' name='name"+counter+"'></div></div><button onclick='remove(this)' class='delete' style='padding-bottom:5px'>&times;</button></div>";
+			break;
+			case "no":
+			document.getElementById("field").innerHTML+="<div class='row mt-3 mb-3 align-items-center'><div class='col-md-6'><div class='lbl lblcounter"+counter+"'></div><div class='labeltext'><input type='text' placeholder='Label'><button onclick='labeladd(this)'>ADD</button></div></div><div class='col-md-5'><div><input type='number' placeholder='Number' name='name"+counter+"'></div></div><button onclick='remove(this)' class='delete' style='padding-bottom:5px'>&times;</button></div>"
+			break;
+			case "email":
+			document.getElementById("field").innerHTML+="<div class='row mt-3 mb-3 align-items-center'><div class='col-md-6'><div class='lbl lblcounter"+counter+"'></div><div class='labeltext'><input type='text' placeholder='Label'><button onclick='labeladd(this)'>ADD</button></div></div><div class='col-md-5'><div><input type='email' placeholder='Email' name='name"+counter+"'></div></div><button onclick='remove(this)' class='delete' style='padding-bottom:5px'>&times;</button></div>"
+			break;
+			case "radio":
+			document.getElementById("field").innerHTML+="<div class='row mt-3 mb-3 align-items-center'><div class='col-md-6'><div class='lbl lblcounter"+counter+"'></div><div class='labeltext'><input type='text' placeholder='Label'><button onclick='labeladd(this)'>ADD</button></div></div><div class='col-md-5'><div></div><div class='rmradio'><input type='text' placeholder='Options'><button onclick='radio(this)'>ADD</button></div></div><button onclick='remove(this)' class='delete' style='padding-bottom:5px'>&times;</button></div>";
+			break;
+			case "select":
+			document.getElementById("field").innerHTML+="<div class='row mt-3 mb-3 align-items-center'><div class='col-md-6'><div class='lbl lblcounter"+counter+"'></div><div class='labeltext'><input type='text' placeholder='Label'><button onclick='labeladd(this)'>ADD</button></div></div><div class='col-md-5'><div><select name='name"+counter+"' style='word-wrap:break-word; min-width:220px; max-width:220px; margin-left:6px;'></select></div><div class='rmradio'><input type='text' placeholder='Options'><button onclick='select(this)'>ADD</button></div></div><button onclick='remove(this)' class='delete' style='padding-bottom:5px'>&times;</button></div>";
+			break;
+			case "check":
+			document.getElementById("field").innerHTML+="<div class='row mt-3 mb-3 align-items-center'><div class='col-md-6'><div class='lbl lblcounter"+counter+"'></div><div class='labeltext'><input type='text' placeholder='Label'><button onclick='labeladd(this)'>ADD</button></div></div><div class='col-md-5'><div></div><div class='rmradio'><input type='text' placeholder='Options'><button onclick='check(this)'>ADD</button></div></div><button onclick='remove(this)' class='delete' style='padding-bottom:5px'>&times;</button></div>";
+			break;
+			case "submit":
+			myFunction();
+			counter--;
+			break;
+		}
+	}
+
+	function radio(a){
+		var rdvalue=a.previousSibling.value;
+		a.parentElement.previousSibling.innerHTML+="<input name='name"+counter+"' value='"+rdvalue+"' type='radio'>"+rdvalue+"<br>";
+		a.previousSibling.value="";
+	}
+
+	function select(a){
+		var slvalue=a.previousSibling.value;
+		a.parentElement.previousSibling.firstChild.innerHTML+="<option>"+slvalue+"</option>";
+		a.previousSibling.value="";
+	}
+
+	function check(a){
+		var ckvalue=a.previousSibling.value;
+		a.parentElement.previousSibling.innerHTML+="<input name='name"+counter+"' value='"+ckvalue+"' type='checkbox'>"+ckvalue+"<br>";
+		a.previousSibling.value="";
+	}
+
+	function labeladd(rd){
+		rd.parentElement.previousSibling.innerHTML=rd.previousSibling.value+":-";
+		if(rd.previousSibling.value!=null){
+			rd.previousSibling.style.display='none';
+			rd.style.display='none';
+		}
+	}
+
+	function remove(rm){
+		rm.parentElement.style.display="none";
+	}
+
+	function myFunction() {
+		if (window.confirm ("Is Your Form Complete?")) {
+			document.getElementById('field').innerHTML+= "<div class='row mt-3 mb-3 justify-content-center'><div class='col-md-2 text-center'><input class='sub' type='submit'></div></div>";
+			document.getElementById('input').disabled=true;
+			document.getElementById('add').disabled=true;
+			var olddiv=document.getElementById('field');
+			var oldsb=olddiv.getElementsByClassName('sub')[0];
+			oldsb.addEventListener("click",newform);
+		}
+	}
+
+	function newform(){
+		var olddiv=document.getElementById('field');
+		var newdiv=document.getElementById('newform');
+		var dl = olddiv.getElementsByClassName("delete");
+		for(var k=0; k<dl.length; k++){
+			dl[k].style.display="none";
+		}
+
+		var oldsb=olddiv.getElementsByClassName('sub')[0];
+
+		oldsb.removeEventListener("click", newform);
+		newdiv.innerHTML=olddiv.innerHTML;
+		// var lh=olddiv.childNodes.length;
+		// for(var o=0;o<lh;o++){
+		// 	var cln=olddiv.childNodes[o].cloneNode(true);
+		// 	document.getElementById('newform').appendChild(cln);
+		// }
+		oldsb.disabled=true;
+		var newsb=newdiv.getElementsByClassName('sub')[0];
+		newsb.addEventListener("click",info);
+	}
+	
+	function info(){
+		var newfm=document.getElementById('newform');
+		var dispform=document.getElementById('dispform');
+		var dvinfo = document.getElementById("information");
+
+		var height = dispform.offsetHeight;
+		dvinfo.style.height = height+'px';
+
+		var ch=newfm.childNodes.length;
+		dvinfo.innerHTML ='';
+
+		for(var f=1;f<ch;f++){
+			if(newfm.childNodes[f-1].style.display != 'none'){
+				var lb=newfm.getElementsByClassName('lblcounter'+f)[0].innerHTML;
+				var vl='';
+				var x = document.getElementsByName("name"+f);
+				var xl=x.length;
+				for(var q=xl/2;q<xl;q++){
+					switch(x[q].tagName){
+						case "INPUT":
+						switch(x[q].type){
+							case "text":
+							vl=x[q].value;
+							break;
+							case "number":
+							vl=x[q].value;
+							break;
+							case "email":
+							vl=x[q].value;
+							break;
+							case "radio":
+							if(x[q].checked)
+								vl=x[q].value;
+							break;
+							case "checkbox":
+							if(x[q].checked)
+								vl+=x[q].value+"&nbsp;&nbsp;&nbsp;&nbsp;";
+							break;
+						}
+						break;
+						case "SELECT":
+						vl = x[q].options[x[q].selectedIndex].text;
+						break;
+					}
+				}
+				dvinfo.innerHTML += "<div class='row py-2'><div class='col-md-5'>"+lb+"</div><div class='col-md-7'>"+vl+"</div></div>";
+			}
+		}
+	}
+</script>
+</body>
+</html>

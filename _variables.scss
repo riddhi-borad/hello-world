@@ -1,0 +1,27 @@
+//partials
+$bgColor:#DDD;
+$primaryColor:blue;
+$bgSecondary:yellow;
+$padding30px:30px;
+$margin20px:20px;
+
+$lightColor:yellow;
+$darkColor:green;
+@function settingTextColor($color){
+    @if(lightness($color)>70){
+        @return $lightColor;
+    }
+    @else{
+        @return $darkColor;
+    }
+}
+@mixin setBackgroungColor($color){
+    background:$color;
+    color:settingTextColor($color)
+}
+$spaceAmount:(0,10,20,30,40);
+@each $space in $spaceAmount{
+    .m-#{$space}{
+        margin:#{$space}px;
+    }
+}

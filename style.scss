@@ -1,0 +1,45 @@
+@import './variables';
+
+body{
+    background: $bgColor;
+    color:$primaryColor;
+}
+.main{
+    color:darken($primaryColor,30%);
+    padding: $padding30px;
+    .d-flex{
+        display: flex;
+        .div1{
+           background: lighten($bgSecondary,30%); 
+           margin: $margin20px;
+           padding: $padding30px;
+        }
+    }   
+}
+
+%btn{
+    border:none;
+    border-radius:10px;
+    padding:10px 15px;
+    color:#FFF;
+}
+.btn-primary{
+    @extend %btn;
+    background:$primaryColor;
+}
+.btn-danger{
+    @extend %btn;
+    background:red;
+}
+.text-pro{
+    background: #DDD;
+    color: settingcolor(#000);
+}
+.text-pro2{
+    @include setBackgroungColor(#FFF);
+    padding:20px;
+    margin-top:30px;
+}
+body{
+    margin:0;
+}
